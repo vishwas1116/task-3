@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Udaan Foundation – Empowering Lives</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --green:#1a6b3c;
+    --green-light:#2d9e5f;
+    --green-pale:#e8f5ee;
+    --orange:#e85d2f;
+    --orange-light:#ff7a4d;
+    --dark:#0f1f17;
+    --gray:#6b7a72;
+    --light:#f7faf8;
+    --white:#ffffff;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--white);}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;z-index:999;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:1px solid #e0ebe5;padding:0 5%;}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--green);letter-spacing:-0.5px;}
+  .logo span{color:var(--orange);}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{text-decoration:none;color:var(--dark);font-size:0.9rem;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--green);}
+  .nav-btn{background:var(--orange);color:var(--white);border:none;padding:0.55rem 1.4rem;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.2s;}
+  .nav-btn:hover{background:var(--orange-light);}
+
+  /* HERO */
+  .hero{min-height:100vh;background:linear-gradient(135deg,var(--dark) 0%,#1a3d28 60%,#0f2d1e 100%);display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-20%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(45,158,95,0.15) 0%,transparent 70%);}
+  .hero::after{content:'';position:absolute;bottom:-10%;left:20%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,47,0.1) 0%,transparent 70%);}
+  .hero-content{max-width:680px;z-index:1;}
+  .hero-tag{display:inline-block;background:rgba(45,158,95,0.2);border:1px solid rgba(45,158,95,0.4);color:#5fd99a;padding:0.4rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:1.5rem;}
+  .hero h1 em{color:#5fd99a;font-style:normal;}
+  .hero p{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:2.5rem;max-width:520px;}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{background:var(--orange);color:var(--white);padding:0.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:all 0.2s;display:inline-block;}
+  .btn-primary:hover{background:var(--orange-light);transform:translateY(-2px);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,0.4);color:var(--white);padding:0.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;font-size:0.95rem;transition:all 0.2s;display:inline-block;}
+  .btn-outline:hover{border-color:rgba(255,255,255,0.8);background:rgba(255,255,255,0.05);}
+  .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(255,255,255,0.1);}
+  .stat h3{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--white);}
+  .stat p{font-size:0.85rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:0.2rem;}
+
+  /* SECTIONS */
+  section{padding:5rem 5%;}
+  .section-tag{display:inline-block;background:var(--green-pale);color:var(--green);padding:0.35rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px;margin-bottom:1rem;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:1rem;}
+  .section-sub{font-size:1rem;color:var(--gray);line-height:1.8;max-width:560px;}
+
+  /* ABOUT */
+  .about{background:var(--light);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1100px;margin:3rem auto 0;}
+  .about-img-wrap{position:relative;}
+  .about-img{width:100%;border-radius:20px;height:420px;object-fit:cover;background:linear-gradient(135deg,#1a6b3c,#2d9e5f);display:flex;align-items:center;justify-content:center;}
+  .about-img-placeholder{width:100%;height:420px;border-radius:20px;background:linear-gradient(135deg,var(--green),var(--green-light));display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;gap:1rem;}
+  .about-img-placeholder svg{width:80px;height:80px;opacity:0.6;}
+  .about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--orange);color:var(--white);padding:1.2rem 1.5rem;border-radius:16px;text-align:center;box-shadow:0 8px 30px rgba(232,93,47,0.3);}
+  .about-badge h4{font-size:2rem;font-weight:800;line-height:1;}
+  .about-badge p{font-size:0.75rem;opacity:0.9;margin-top:0.3rem;}
+  .about-text .section-sub{max-width:100%;}
+  .about-points{margin-top:2rem;display:flex;flex-direction:column;gap:1rem;}
+  .about-point{display:flex;gap:1rem;align-items:flex-start;}
+  .point-icon{width:40px;height:40px;border-radius:10px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+  .point-text h4{font-size:0.95rem;font-weight:600;color:var(--dark);margin-bottom:0.2rem;}
+  .point-text p{font-size:0.85rem;color:var(--gray);line-height:1.6;}
+
+  /* CAUSES */
+  .causes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;}
+  .cause-card{background:var(--white);border:1px solid #e0ebe5;border-radius:20px;overflow:hidden;transition:all 0.3s;}
+  .cause-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(26,107,60,0.12);}
+  .cause-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+  .cause-img.edu{background:linear-gradient(135deg,#1a6b3c22,#1a6b3c44);}
+  .cause-img.health{background:linear-gradient(135deg,#e85d2f22,#e85d2f44);}
+  .cause-img.env{background:linear-gradient(135deg,#2d9e5f22,#2d9e5f44);}
+  .cause-img.women{background:linear-gradient(135deg,#9b59b622,#9b59b644);}
+  .cause-body{padding:1.5rem;}
+  .cause-body h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;}
+  .cause-body p{font-size:0.88rem;color:var(--gray);line-height:1.7;margin-bottom:1rem;}
+  .cause-progress{height:5px;background:#e0ebe5;border-radius:10px;overflow:hidden;}
+  .cause-progress-bar{height:100%;background:var(--green);border-radius:10px;}
+  .cause-meta{display:flex;justify-content:space-between;font-size:0.8rem;color:var(--gray);margin-top:0.5rem;}
+
+  /* IMPACT */
+  .impact{background:var(--dark);color:var(--white);}
+  .impact .section-title{color:var(--white);}
+  .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem;}
+  .impact-card{text-align:center;padding:2rem;border:1px solid rgba(255,255,255,0.1);border-radius:20px;}
+  .impact-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:#5fd99a;}
+  .impact-label{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-top:0.5rem;text-transform:uppercase;letter-spacing:0.5px;}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem;}
+  .service-card{padding:2rem;border:1px solid #e0ebe5;border-radius:20px;transition:all 0.3s;}
+  .service-card:hover{background:var(--green-pale);border-color:var(--green-light);}
+  .service-icon{width:52px;height:52px;border-radius:14px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;}
+  .service-card:hover .service-icon{background:var(--white);}
+  .service-card h3{font-size:1.05rem;font-weight:600;margin-bottom:0.6rem;color:var(--dark);}
+  .service-card p{font-size:0.88rem;color:var(--gray);line-height:1.7;}
+
+  /* TEAM */
+  .team{background:var(--light);}
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:3rem;}
+  .team-card{text-align:center;}
+  .team-avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:white;}
+  .team-card h3{font-size:1rem;font-weight:600;margin-bottom:0.2rem;}
+  .team-card p{font-size:0.85rem;color:var(--gray);}
+
+  /* DONATE */
+  .donate{background:linear-gradient(135deg,var(--green) 0%,#0f4d2a 100%);color:var(--white);text-align:center;}
+  .donate .section-title{color:var(--white);}
+  .donate .section-sub{color:rgba(255,255,255,0.75);margin:0 auto 2.5rem;}
+  .donate-amounts{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+  .amount-btn{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.3);color:var(--white);padding:0.7rem 1.8rem;border-radius:50px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .amount-btn:hover,.amount-btn.active{background:var(--white);color:var(--green);}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem;}
+  .contact-info{display:flex;flex-direction:column;gap:1.5rem;}
+  .contact-item{display:flex;gap:1rem;align-items:flex-start;}
+  .contact-item-icon{width:44px;height:44px;border-radius:12px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .contact-item h4{font-size:0.95rem;font-weight:600;margin-bottom:0.2rem;}
+  .contact-item p{font-size:0.88rem;color:var(--gray);}
+  .contact-form{display:flex;flex-direction:column;gap:1rem;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .form-group{display:flex;flex-direction:column;gap:0.4rem;}
+  .form-group label{font-size:0.85rem;font-weight:500;color:var(--dark);}
+  .form-group input,.form-group textarea,.form-group select{padding:0.75rem 1rem;border:1.5px solid #dde8e2;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--dark);background:var(--white);transition:border 0.2s;outline:none;}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--green);}
+  .form-group textarea{height:120px;resize:vertical;}
+  .submit-btn{background:var(--green);color:var(--white);border:none;padding:0.9rem;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;transition:background 0.2s;}
+  .submit-btn:hover{background:var(--green-light);}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:rgba(255,255,255,0.6);padding:3rem 5% 2rem;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+  .footer-brand .logo{display:block;margin-bottom:1rem;font-size:1.4rem;}
+  .footer-brand p{font-size:0.88rem;line-height:1.8;}
+  .footer-col h4{color:var(--white);font-size:0.9rem;font-weight:600;margin-bottom:1rem;}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+  .footer-col a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+  .footer-col a:hover{color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:2rem;display:flex;justify-content:space-between;font-size:0.82rem;}
+
+  @media(max-width:768px){
+    .about-grid,.contact-grid,.footer-grid{grid-template-columns:1fr;}
+    .impact-grid{grid-template-columns:repeat(2,1fr);}
+    .hero-stats{gap:1.5rem;}
+    .form-row{grid-template-columns:1fr;}
+    .about-badge{right:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Udaan <span>Foundation</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#causes">Causes</a></li>
+      <li><a href="#services">Programs</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">🌱 Serving Since 2018</div>
+    <h1>Empowering Lives,<br/><em>Building Futures</em></h1>
+    <p>We work across education, health, environment, and women empowerment to create lasting change in the communities that need it most.</p>
+    <div class="hero-btns">
+      <a href="#causes" class="btn-primary">Our Causes</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><h3>50K+</h3><p>Beneficiaries</p></div>
+      <div class="stat"><h3>28</h3><p>States</p></div>
+      <div class="stat"><h3>200+</h3><p>Volunteers</p></div>
+      <div class="stat"><h3>6</h3><p>Active Causes</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div style="text-align:center;margin-bottom:1rem;">
+    <span class="section-tag">Who We Are</span>
+    <h2 class="section-title">A Foundation Built on<br/>Purpose & Compassion</h2>
+    <p class="section-sub" style="margin:0 auto;">Udaan Foundation is a Section 8 registered non-profit organization working across 28 states with over 200 dedicated volunteers to bring meaningful change.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <p style="font-size:0.9rem;opacity:0.7;">200+ Volunteers Nationwide</p>
+      </div>
+      <div class="about-badge">
+        <h4>6+</h4>
+        <p>Years of Impact</p>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Our Story</span>
+      <h2 class="section-title" style="font-size:1.8rem;">Started with a Vision,<br/>Grown with Heart</h2>
+      <p class="section-sub">Founded in 2018, Udaan Foundation began with a simple belief — every person deserves access to education, healthcare, and dignity. Today we operate across India with certified programs and a passionate volunteer network.</p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="point-icon">🎓</div>
+          <div class="point-text">
+            <h4>80G & 12A Certified</h4>
+            <p>Tax-exempt donations with full transparency and accountability.</p>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">🏛️</div>
+          <div class="point-text">
+            <h4>NITI Aayog Registered</h4>
+            <p>Aligned with national development goals for maximum impact.</p>
+          </div>
+        </div>
+        <div class="about-point">
+          <div class="point-icon">✅</div>
+          <div class="point-text">
+            <h4>ISO 9001:2015 Certified</h4>
+            <p>Committed to quality standards in every program we run.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAUSES -->
+<section id="causes">
+  <span class="section-tag">What We Fight For</span>
+  <h2 class="section-title">Our Causes</h2>
+  <p class="section-sub">Six focused areas where we are making real, measurable difference every single day.</p>
+  <div class="causes-grid">
+    <div class="cause-card">
+      <div class="cause-img edu">📚</div>
+      <div class="cause-body">
+        <h3>Project Bachpanshala</h3>
+        <p>Ensuring quality education for underprivileged children across rural India through community learning centers.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:72%"></div></div>
+        <div class="cause-meta"><span>₹3.6L raised</span><span>72% of goal</span></div>
+      </div>
+    </div>
+    <div class="cause-card">
+      <div class="cause-img health">❤️</div>
+      <div class="cause-body">
+        <h3>Project Seva</h3>
+        <p>Providing food, clothing, and essential supplies to families living below the poverty line.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:88%"></div></div>
+        <div class="cause-meta"><span>₹4.4L raised</span><span>88% of goal</span></div>
+      </div>
+    </div>
+    <div class="cause-card">
+      <div class="cause-img env">🌿</div>
+      <div class="cause-body">
+        <h3>Project Prakriti</h3>
+        <p>Environmental conservation and sustainability efforts — tree plantation, clean drives, and awareness campaigns.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:55%"></div></div>
+        <div class="cause-meta"><span>₹2.2L raised</span><span>55% of goal</span></div>
+      </div>
+    </div>
+    <div class="cause-card">
+      <div class="cause-img women">💪</div>
+      <div class="cause-body">
+        <h3>Project Udaan</h3>
+        <p>Women empowerment through skill development, financial literacy, and entrepreneurship support programs.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:65%"></div></div>
+        <div class="cause-meta"><span>₹3.2L raised</span><span>65% of goal</span></div>
+      </div>
+    </div>
+    <div class="cause-card">
+      <div class="cause-img env">🐾</div>
+      <div class="cause-body">
+        <h3>Project Jeev</h3>
+        <p>Animal welfare — rescue, protection, feeding, and rehabilitation of stray and injured animals.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:40%"></div></div>
+        <div class="cause-meta"><span>₹2.0L raised</span><span>40% of goal</span></div>
+      </div>
+    </div>
+    <div class="cause-card">
+      <div class="cause-img health">🚀</div>
+      <div class="cause-body">
+        <h3>Project Vikas</h3>
+        <p>Enhancing employability of youth through skill training, career counselling, and job placement support.</p>
+        <div class="cause-progress"><div class="cause-progress-bar" style="width:60%"></div></div>
+        <div class="cause-meta"><span>₹3.0L raised</span><span>60% of goal</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div style="text-align:center;">
+    <span class="section-tag" style="background:rgba(95,217,154,0.15);color:#5fd99a;">Our Impact</span>
+    <h2 class="section-title">Numbers That Tell<br/>Our Story</h2>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-num">50,000+</div>
+      <div class="impact-label">Beneficiaries Reached</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">200+</div>
+      <div class="impact-label">Active Volunteers</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">28</div>
+      <div class="impact-label">States Covered</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-num">6</div>
+      <div class="impact-label">Active Causes</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / PROGRAMS -->
+<section id="services">
+  <span class="section-tag">What We Do</span>
+  <h2 class="section-title">Our Programs</h2>
+  <p class="section-sub">Structured, community-driven programs designed to create lasting systemic change.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏫</div>
+      <h3>Community Learning Centers</h3>
+      <p>Free education centers in rural and semi-urban areas for children aged 5–16 who lack access to quality schooling.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🍱</div>
+      <h3>Daily Meal Distribution</h3>
+      <p>Hot meals distributed daily to underprivileged families, migrant workers, and homeless individuals.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌳</div>
+      <h3>Green India Initiative</h3>
+      <p>Mass tree plantation drives and environment awareness campaigns with schools and local communities.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👩‍💼</div>
+      <h3>Women Skill Training</h3>
+      <p>Short-term vocational courses in stitching, beauty, computer basics, and entrepreneurship for women.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🐕</div>
+      <h3>Animal Rescue & Care</h3>
+      <p>Emergency rescue, veterinary care, and feeding programs for stray animals across partnered cities.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💼</div>
+      <h3>Youth Career Support</h3>
+      <p>Resume building, interview prep, and job placement assistance for first-generation job seekers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div style="text-align:center;">
+    <span class="section-tag">The People Behind It</span>
+    <h2 class="section-title">Meet Our Team</h2>
+    <p class="section-sub" style="margin:0 auto;">Passionate individuals working tirelessly to make a difference.</p>
+  </div>
+  <div class="team-grid" style="margin-top:3rem;">
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#1a6b3c,#2d9e5f);">GS</div>
+      <h3>Govind Shukla</h3>
+      <p>Founder & CEO</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#e85d2f,#ff7a4d);">PR</div>
+      <h3>Priya Rathore</h3>
+      <p>Head of Programs</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#9b59b6,#c39bd3);">AK</div>
+      <h3>Ankit Kumar</h3>
+      <p>Volunteer Coordinator</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#2980b9,#85b7eb);">SM</div>
+      <h3>Sneha Mishra</h3>
+      <p>Outreach Manager</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate" id="donate">
+  <span class="section-tag" style="background:rgba(255,255,255,0.15);color:white;">Support Our Work</span>
+  <h2 class="section-title">Make a Difference Today</h2>
+  <p class="section-sub">Your donation directly funds education, meals, and lives changed across India.</p>
+  <div class="donate-amounts">
+    <button class="amount-btn" onclick="selectAmount(this)">₹200</button>
+    <button class="amount-btn active" onclick="selectAmount(this)">₹500</button>
+    <button class="amount-btn" onclick="selectAmount(this)">₹1,000</button>
+    <button class="amount-btn" onclick="selectAmount(this)">₹2,500</button>
+    <button class="amount-btn" onclick="selectAmount(this)">Custom</button>
+  </div>
+  <button class="btn-primary" style="font-size:1rem;padding:1rem 3rem;">Donate Now ❤️</button>
+  <p style="margin-top:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.5);">80G certified — your donation is tax-exempt under Indian law.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <span class="section-tag">Get In Touch</span>
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-sub">Have questions or want to volunteer? We'd love to hear from you.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <h4>Address</h4>
+          <p>Raipur, Chhattisgarh, India</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📧</div>
+        <div>
+          <h4>Email</h4>
+          <p>support@udaanfoundation.org</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <h4>Phone</h4>
+          <p>+91 98765 43210</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div>
+          <h4>Working Hours</h4>
+          <p>Mon – Sat: 9am to 6pm</p>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Rahul"/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Sharma"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="rahul@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>I want to...</label>
+        <select>
+          <option>Volunteer with the foundation</option>
+          <option>Make a donation inquiry</option>
+          <option>Partner with us</option>
+          <option>Just say hello!</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us a bit about yourself and how you'd like to help..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Udaan <span>Foundation</span></div>
+      <p>Empowering lives and building futures across India since 2018. Section 8 registered, 80G certified, and ISO 9001:2015 compliant.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#causes">Our Causes</a></li>
+        <li><a href="#services">Programs</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="#">Bachpanshala</a></li>
+        <li><a href="#">Project Seva</a></li>
+        <li><a href="#">Project Prakriti</a></li>
+        <li><a href="#">Project Udaan</a></li>
+        <li><a href="#">Project Jeev</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Udaan Foundation. All rights reserved.</span>
+    <span>Made with ❤️ for a better India</span>
+  </div>
+</footer>
+
+<script>
+function selectAmount(btn){
+  document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
